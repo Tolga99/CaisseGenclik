@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodels="clr-namespace:CaisseGenclik.ViewModels" xmlns:Models="clr-namespace:CaisseGenclik.Models" x:Class="CaisseGenclik.Views.CaisseView"
         d:DataContext="{d:DesignInstance Type={x:Type viewmodels:CaisseViewModel}}"
         mc:Ignorable="d"
-        Title="CaisseView" Height="900" Width="1100">
+        Title="CaisseView"         Width="1200" 
+        Height="1920">
     <Window.DataContext>
         <viewmodels:CaisseViewModel>
             <viewmodels:CaisseViewModel.SelectedArticle>
@@ -13,16 +14,24 @@
             </viewmodels:CaisseViewModel.SelectedArticle>
         </viewmodels:CaisseViewModel>
     </Window.DataContext>
-    <Grid Height="884" VerticalAlignment="Bottom">
+    <Grid Width="1200" 
+        Height="1920" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ListBox x:Name="list" ItemsSource="{Binding ArticlesPanier}" SelectedItem="{Binding SelectedArticle}" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListBox Width="1190" 
+        Height="1920" Grid.ColumnSpan="2" x:Name="list" ItemsSource="{Binding ArticlesPanier}" SelectedItem="{Binding SelectedArticle}" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Left" Margin="10,-26,0,26">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Width="1200" 
+        Height="1920" Grid.ColumnSpan="2" Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="1" Margin="5">
+                    <Border BorderBrush="Black" BorderThickness="1" Width="500" Margin="30,30,0,0">
                         <StackPanel>
                             <TextBlock Text="{Binding Nom}" FontWeight="Bold"/>
                             <Image Source="{Binding ImagePath}" Height="100" Width="100"/>

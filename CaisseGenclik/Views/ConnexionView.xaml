@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CaisseGenclik.ViewModels"
         mc:Ignorable="d"
-        Title="CaisseView" Height="450" Width="800">
+        Title="CaisseView"         Width="1200" 
+        Height="1920">
 
     <Window.DataContext>
         <local:ConnexionViewModel/>
@@ -21,14 +22,14 @@
         </Grid.RowDefinitions>
 
         <!-- Vos éléments d'interface utilisateur pour l'écran de connexion -->
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="273" Width="256" Margin="0,81,0,0">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="500" Width="500" Margin="0,81,0,0">
             <TextBlock Text="Nom d'utilisateur:" />
-            <TextBox Text="{Binding NomUtilisateur}" Width="200" />
+            <TextBox Text="{Binding NomUtilisateur}" Width="300" HorizontalAlignment="Left" Margin="5,5,5,5" />
 
             <TextBlock Text="Mot de passe:" />
-            <TextBox Text="{Binding MotDePasse}" Width="200" />
+            <TextBox Text="{Binding MotDePasse}" Width="300" HorizontalAlignment="Left" Margin="5,5,5,5"/>
 
-            <Button Content="Connexion" Command="{Binding ConnexionCommand}" Width="100" IsDefault="True"/>
+            <Button Content="Connexion" Command="{Binding ConnexionCommand}" Width="200" Height="25" Margin="5,5,5,5" IsDefault="True" BorderBrush="#FF3658E2"/>
         </StackPanel>
         <!-- Bouton À propos -->
         <Button Content="À propos" Style="{StaticResource AboutButtonStyle}" Click="AboutButton_Click" Margin="0,0,10,9" Grid.RowSpan="2"/>
