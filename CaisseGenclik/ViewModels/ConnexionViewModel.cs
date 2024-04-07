@@ -19,13 +19,13 @@ namespace CaisseGenclik.ViewModels
 
         public ConnexionViewModel()
         {
-            ConnexionCommand = new RelayCommand(Connexion);
+            ConnexionCommand = new DelegateCommand((a) => Connexion());
         }
 
-        private void Connexion(object parameter)
+        private void Connexion()
         {
             // Vérifiez si le nom d'utilisateur et le mot de passe sont corrects
-            if (NomUtilisateur == "Ad" && MotDePasse == "17")
+            if ((NomUtilisateur == "" && MotDePasse == "") || (NomUtilisateur == null && MotDePasse == null))
             {
                 // Connexion réussie, passez à l'écran "Caisse"
                 var caisse = new CaisseViewModel();

@@ -25,12 +25,13 @@ namespace CaisseGenclik.ViewModels
                 // Ajoutez d'autres articles ici
             };
 
-            AjouterArticleCommand = new RelayCommand(AjouterArticle);
+            AjouterArticleCommand = new DelegateCommand((a) => AjouterArticle());
+
         }
 
-        private void AjouterArticle(object parameter)
+        private void AjouterArticle()
         {
-            Article article = parameter as Article;
+            //Article article = parameter as Article;
             // Ajoutez la logique pour ajouter l'article à la facture
         }
         public event PropertyChangedEventHandler PropertyChanged;

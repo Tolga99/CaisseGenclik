@@ -14,6 +14,19 @@ namespace CaisseGenclik.ViewModels
 {
     public class CaisseViewModel : INotifyPropertyChanged
     {
+        private Article _selectedArticle;
+        public Article SelectedArticle
+        {
+            get { return _selectedArticle; }
+            set
+            {
+                if (_selectedArticle != value)
+                {
+                    _selectedArticle = value;
+                    OnPropertyChanged(nameof(SelectedArticle));
+                }
+            }
+        }
         private ObservableCollection<Article> _articlesPanier = new ObservableCollection<Article>();
         public ObservableCollection<Article> ArticlesPanier
         {
@@ -36,8 +49,8 @@ namespace CaisseGenclik.ViewModels
                 OnPropertyChanged(nameof(SoldePanier));
             }
         }
-        public ICommand AjouterCommand { get; set; }
-        public ICommand RetirerCommand { get; set; }
+        public ICommand AjouterCommand { get; }
+        public ICommand RetirerCommand { get; }
 
         public CaisseViewModel()
         {
@@ -45,8 +58,9 @@ namespace CaisseGenclik.ViewModels
             ArticlesPanier = new ObservableCollection<Article>();
             GenererListeArticles();
             // Initialiser les commandes d'ajout et de retrait
-            AjouterCommand = new RelayCommand<Article>(AjouterCommandExecute);
-            RetirerCommand = new RelayCommand<Article>(RetirerCommandExecute);
+            AjouterCommand = new DelegateCommand((a) => AjouterCommandExecute());
+            RetirerCommand = new DelegateCommand((a) => RetirerCommandExecute());
+
         }
         private void GenererListeArticles()
         {
@@ -58,19 +72,25 @@ namespace CaisseGenclik.ViewModels
         }
 
         // Méthode pour ajouter un article au panier
-        public void AjouterCommandExecute(Article article)
+        public void AjouterCommandExecute()
         {
-            ArticlesPanier.Add((Article)article);
-            // Mettre à jour le solde du panier après l'ajout d'un article
-            CalculateSoldePanier();
+            if (SelectedArticle != null)
+            {
+                ArticlesPanier.Add(SelectedArticle);
+                // Mettre à jour le solde du panier après l'ajout d'un article
+                CalculateSoldePanier();
+            }
         }
 
         // Méthode pour retirer un article du panier
-        public void RetirerCommandExecute(Article article)
+        public void RetirerCommandExecute()
         {
-            ArticlesPanier.Remove((Article)article);
-            // Mettre à jour le solde du panier après le retrait d'un article
-            CalculateSoldePanier();
+            if (SelectedArticle != null)
+            {
+                ArticlesPanier.Remove(SelectedArticle);
+                // Mettre à jour le solde du panier après le retrait d'un article
+                CalculateSoldePanier();
+            }
         }
 
         // Méthode pour calculer le solde du panier
