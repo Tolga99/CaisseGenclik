@@ -8,6 +8,7 @@ namespace CaisseGenclik.Models
 {
     public class Article
     {
+        public int Id { get; set; } 
         public string Nom { get; set; }
         public double Prix { get; set; }
         public string ImagePath { get; set; }

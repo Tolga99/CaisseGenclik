@@ -18,41 +18,69 @@
         Height="1920" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ListBox Width="1190" 
-        Height="1920" Grid.ColumnSpan="2" x:Name="list" ItemsSource="{Binding ArticlesPanier}" SelectedItem="{Binding SelectedArticle}" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Left" Margin="10,-26,0,26">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Width="1200" 
-        Height="1920" Grid.ColumnSpan="2" Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="1" Width="500" Margin="30,30,0,0">
-                        <StackPanel>
+        <DataGrid ItemsSource="{Binding StockArticles}" SelectedItem="{Binding SelectedArticle}" AutoGenerateColumns="False"
+          Width="1200" Height="1220" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Nom" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
                             <TextBlock Text="{Binding Nom}" FontWeight="Bold"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Image" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
                             <Image Source="{Binding ImagePath}" Height="100" Width="100"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Prix" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
                             <TextBlock Text="{Binding Prix, StringFormat=\{0\} €}" HorizontalAlignment="Right"/>
-                            <!--<Button Command="{Binding cmdSearch}" CommandParameter="{Binding Text,ElementName=searchText}" Content="Rechercher" Name="Search" HorizontalAlignment="Left" Margin="542,105,0,0" VerticalAlignment="Top"/>-->
-                            <Button x:Name="btAdd" Content="Ajouter" Command="{Binding AjouterCommand, Mode=OneWay}"  Width="100" CommandParameter="{Binding SelectedArticle}" >
-                                <Button.DataContext>
-                                    <viewmodels:CaisseViewModel/>
-                                </Button.DataContext>
-                            </Button>
-                            <Button x:Name="btRemove" Content="Retirer" Command="{Binding RetirerCommand}"  Width="100" CommandParameter="{Binding SelectedArticle}" >
-                                <Button.DataContext>
-                                    <viewmodels:CaisseViewModel/>
-                                </Button.DataContext>
-                            </Button>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
-        <TextBlock Grid.Column="1" Text="{Binding SoldePanier}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!-- Colonne pour le bouton Ajouter -->
+                <DataGridTemplateColumn Header="Actions" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Ajouter" Command="{Binding DataContext.AjouterCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!-- Colonne pour le bouton Retirer -->
+                <DataGridTemplateColumn Header="" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Retirer" Command="{Binding DataContext.RetirerCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!-- Composant de texte en bas de l'écran -->
+        <Border Background="#E6E6E6" Width="1200" Height="700" >
+            <StackPanel Margin="0">
+                <ItemsControl ItemsSource="{Binding Panier}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                            <Run Text="{Binding Quantite}" FontWeight="Bold"/>
+                            <Run Text="x "/>
+                            <Run Text="{Binding Nom}"/>
+                            <Run Text=" "/>
+                            <Run Text="{Binding Prix, StringFormat=\{0\} €}" FontWeight="Bold"/>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock Text="Total : " FontWeight="Bold" Margin="0,10,0,0"/>
+                <TextBlock Text="{Binding TotalPanier, StringFormat=\{0\} €}" FontWeight="Bold"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

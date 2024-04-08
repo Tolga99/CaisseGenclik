@@ -27,16 +27,26 @@ namespace CaisseGenclik.ViewModels
                 }
             }
         }
-        private ObservableCollection<Article> _articlesPanier = new ObservableCollection<Article>();
-        public ObservableCollection<Article> ArticlesPanier
+        private ObservableCollection<Article> _panier = new ObservableCollection<Article>();
+        public ObservableCollection<Article> Panier
         {
-            get { return _articlesPanier; }
+            get { return _panier; }
             set
             {
-                _articlesPanier = value;
-                OnPropertyChanged(nameof(ArticlesPanier));
+                _panier = value;
+                OnPropertyChanged(nameof(Panier));
                 // Mettre à jour le solde du panier lorsque la liste d'articles change
                 CalculateSoldePanier();
+            }
+        }
+        private ObservableCollection<Article> _stockArticles = new ObservableCollection<Article>();
+        public ObservableCollection<Article> StockArticles
+        {
+            get { return _stockArticles; }
+            set
+            {
+                _stockArticles = value;
+                OnPropertyChanged(nameof(StockArticles));
             }
         }
         private double _soldePanier;
@@ -55,7 +65,7 @@ namespace CaisseGenclik.ViewModels
         public CaisseViewModel()
         {
             // Initialiser la collection d'articles
-            ArticlesPanier = new ObservableCollection<Article>();
+            StockArticles = new ObservableCollection<Article>();
             GenererListeArticles();
             // Initialiser les commandes d'ajout et de retrait
             AjouterCommand = new DelegateCommand((a) => AjouterCommandExecute());
@@ -65,29 +75,29 @@ namespace CaisseGenclik.ViewModels
         private void GenererListeArticles()
         {
             // Ajouter les articles à la collection
-            ArticlesPanier.Add(new Article { Nom = "Cay", Prix = 0.50 });
-            ArticlesPanier.Add(new Article { Nom = "Café", Prix = 1.00 });
-            ArticlesPanier.Add(new Article { Nom = "Chips", Prix = 0.80 });
-            ArticlesPanier.Add(new Article { Nom = "Toasts au fromage", Prix = 2.00 });
+            StockArticles.Add(new Article {Id = 1, Nom = "Cay", Prix = 0.50 });
+            StockArticles.Add(new Article {Id = 2, Nom = "Café", Prix = 1.00 });
+            StockArticles.Add(new Article {Id = 3, Nom = "Chips", Prix = 0.80 });
+            StockArticles.Add(new Article {Id = 4, Nom = "Toasts au fromage", Prix = 2.00 });
         }
 
         // Méthode pour ajouter un article au panier
-        public void AjouterCommandExecute()
+        private void AjouterCommandExecute()
         {
             if (SelectedArticle != null)
             {
-                ArticlesPanier.Add(SelectedArticle);
+                Panier.Add(SelectedArticle);
                 // Mettre à jour le solde du panier après l'ajout d'un article
                 CalculateSoldePanier();
             }
         }
 
         // Méthode pour retirer un article du panier
-        public void RetirerCommandExecute()
+        private void RetirerCommandExecute()
         {
             if (SelectedArticle != null)
             {
-                ArticlesPanier.Remove(SelectedArticle);
+                Panier.Remove(SelectedArticle);
                 // Mettre à jour le solde du panier après le retrait d'un article
                 CalculateSoldePanier();
             }
@@ -96,7 +106,11 @@ namespace CaisseGenclik.ViewModels
         // Méthode pour calculer le solde du panier
         public void CalculateSoldePanier()
         {
-            SoldePanier = ArticlesPanier.Sum(article => article.Prix);
+            SoldePanier = Panier.Sum(article => article.Prix);
+        }
+        public void OnArticleSelected(Article selectedArticle)
+        {
+            SelectedArticle = selectedArticle;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
