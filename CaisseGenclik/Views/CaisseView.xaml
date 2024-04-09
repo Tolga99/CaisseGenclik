@@ -15,13 +15,13 @@
         </viewmodels:CaisseViewModel>
     </Window.DataContext>
     <Grid Width="1200" 
-        Height="1920" VerticalAlignment="Top">
+        Height="1920">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <DataGrid ItemsSource="{Binding StockArticles}" SelectedItem="{Binding SelectedArticle}" AutoGenerateColumns="False"
-          Width="1200" Height="1220" HorizontalAlignment="Left" VerticalAlignment="Top">
+          Width="auto" Height="auto" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Nom" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
@@ -62,25 +62,13 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
         <!-- Composant de texte en bas de l'écran -->
-        <Border Background="#E6E6E6" Width="1200" Height="700" >
-            <StackPanel Margin="0">
-                <ItemsControl ItemsSource="{Binding Panier}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock>
-                            <Run Text="{Binding Quantite}" FontWeight="Bold"/>
-                            <Run Text="x "/>
-                            <Run Text="{Binding Nom}"/>
-                            <Run Text=" "/>
-                            <Run Text="{Binding Prix, StringFormat=\{0\} €}" FontWeight="Bold"/>
-                            </TextBlock>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                <TextBlock Text="Total : " FontWeight="Bold" Margin="0,10,0,0"/>
-                <TextBlock Text="{Binding TotalPanier, StringFormat=\{0\} €}" FontWeight="Bold"/>
-            </StackPanel>
-        </Border>
+        <!-- TextBlock pour afficher le contenu du panier -->
+        <TextBlock Text="{Binding PrintPanier}"
+               Margin="100,805,205,719" Width="895" Foreground="#FF3F0B0B" />
+        <Button Height="100" Width="100"  Content="Clôturer le panier" Command="{Binding CloturerPanierCommand}" HorizontalAlignment="Left" Margin="1000,805,0,1015" Background="Red" Foreground="White"/>
     </Grid>
+
+    <!-- Bouton pour clôturer le panier -->
 </Window>

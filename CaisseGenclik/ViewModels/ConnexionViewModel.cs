@@ -25,7 +25,7 @@ namespace CaisseGenclik.ViewModels
         private void Connexion()
         {
             // Vérifiez si le nom d'utilisateur et le mot de passe sont corrects
-            if ((NomUtilisateur == "" && MotDePasse == "") || (NomUtilisateur == null && MotDePasse == null))
+            if (NomUtilisateur == "admin" && MotDePasse == "itix")
             {
                 // Connexion réussie, passez à l'écran "Caisse"
                 var caisse = new CaisseViewModel();
