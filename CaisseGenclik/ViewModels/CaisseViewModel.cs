@@ -175,6 +175,7 @@ namespace CaisseGenclik.ViewModels
                 // Réinitialiser le panier après la clôture
                 Panier.Clear();
                 SoldePanier = 0;
+                PrintPanier = String.Empty;
             }
         }
         // Méthode pour calculer le solde du panier

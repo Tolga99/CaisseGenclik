@@ -14,14 +14,18 @@
             </viewmodels:CaisseViewModel.SelectedArticle>
         </viewmodels:CaisseViewModel>
     </Window.DataContext>
-    <Grid Width="1200" 
-        Height="1920">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- Contenu principal -->
+            <RowDefinition Height="Auto"/>
+            <!-- Pied de page -->
+        </Grid.RowDefinitions>
         <DataGrid ItemsSource="{Binding StockArticles}" SelectedItem="{Binding SelectedArticle}" AutoGenerateColumns="False"
-          Width="auto" Height="auto" VerticalAlignment="Top">
+          VerticalAlignment="Top" Grid.Row="0">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Nom" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
@@ -63,11 +67,13 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- Composant de texte en bas de l'écran -->
-        <!-- TextBlock pour afficher le contenu du panier -->
-        <TextBlock Text="{Binding PrintPanier}"
-               Margin="100,805,205,719" Width="895" Foreground="#FF3F0B0B" />
-        <Button Height="100" Width="100"  Content="Clôturer le panier" Command="{Binding CloturerPanierCommand}" HorizontalAlignment="Left" Margin="1000,805,0,1015" Background="Red" Foreground="White"/>
+        <!-- Pied de page -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <!-- Affichage du contenu du panier -->
+            <TextBlock Text="{Binding PrintPanier}" Margin="10" Foreground="#FF3F0B0B"/>
+            <!-- Bouton Clôturer le panier -->
+            <Button Content="Clôturer le panier" Command="{Binding CloturerPanierCommand}" Background="Red" Foreground="White" Margin="10"/>
+        </StackPanel>
     </Grid>
 
     <!-- Bouton pour clôturer le panier -->

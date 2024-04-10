@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CaisseGenclik.ViewModels"
         mc:Ignorable="d"
-        Title="CaisseView"         Width="1200" 
-        Height="1920">
+        Title="CaisseView"         Width="645" 
+        Height="315">
 
     <Window.DataContext>
         <local:ConnexionViewModel/>
@@ -22,12 +22,12 @@
         </Grid.RowDefinitions>
 
         <!-- Vos éléments d'interface utilisateur pour l'écran de connexion -->
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="500" Width="500" Margin="0,81,0,0">
-            <TextBlock Text="Nom d'utilisateur:" />
-            <TextBox Text="{Binding NomUtilisateur}" Width="300" HorizontalAlignment="Left" Margin="5,5,5,5" />
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,81,0,0">
+            <TextBlock Text="Nom d'utilisateur" HorizontalAlignment="Center" />
+            <TextBox Text="{Binding NomUtilisateur}" Width="300" HorizontalAlignment="Center" Margin="5,5,5,5" />
 
-            <TextBlock Text="Mot de passe:" />
-            <TextBox Text="{Binding MotDePasse}" Width="300" HorizontalAlignment="Left" Margin="5,5,5,5"/>
+            <TextBlock Text="Mot de passe:" HorizontalAlignment="Center"/>
+            <TextBox Text="{Binding MotDePasse}" Width="300" HorizontalAlignment="Center" Margin="5,5,5,5"/>
 
             <Button Content="Connexion" Command="{Binding ConnexionCommand}" Width="200" Height="25" Margin="5,5,5,5" IsDefault="True" BorderBrush="#FF3658E2"/>
         </StackPanel>
