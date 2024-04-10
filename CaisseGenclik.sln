@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaisseGenclik", "CaisseGenclik\CaisseGenclik.csproj", "{FF7E1D6F-6382-40FC-AECE-2701A07FF6FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaisseGenclikApp", "CaisseGenclikApp\CaisseGenclikApp.csproj", "{04BA5682-2D6C-477F-9EF5-549762C8F553}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,12 @@ Global
 		{FF7E1D6F-6382-40FC-AECE-2701A07FF6FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF7E1D6F-6382-40FC-AECE-2701A07FF6FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF7E1D6F-6382-40FC-AECE-2701A07FF6FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04BA5682-2D6C-477F-9EF5-549762C8F553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04BA5682-2D6C-477F-9EF5-549762C8F553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04BA5682-2D6C-477F-9EF5-549762C8F553}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{04BA5682-2D6C-477F-9EF5-549762C8F553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04BA5682-2D6C-477F-9EF5-549762C8F553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04BA5682-2D6C-477F-9EF5-549762C8F553}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
