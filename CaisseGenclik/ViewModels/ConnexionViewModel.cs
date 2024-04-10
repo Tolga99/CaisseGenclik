@@ -31,6 +31,8 @@ namespace CaisseGenclik.ViewModels
                 var caisse = new CaisseViewModel();
                 var viewCaisse = new CaisseView();
                 viewCaisse.Show();
+                App.Current.MainWindow.Close();
+                App.Current.MainWindow = viewCaisse;
             }
             else
             {

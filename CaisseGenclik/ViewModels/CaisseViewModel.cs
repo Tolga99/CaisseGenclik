@@ -141,6 +141,10 @@ namespace CaisseGenclik.ViewModels
         // Méthode pour clôturer le panier
         public void CloturerPanier()
         {
+            if(Panier.Count == 0)
+            {
+                return;
+            }
             // Obtenir la date actuelle
             DateTime dateCloture = DateTime.Now;
 
@@ -192,5 +196,6 @@ namespace CaisseGenclik.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

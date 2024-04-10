@@ -6,7 +6,7 @@
         d:DataContext="{d:DesignInstance Type={x:Type viewmodels:CaisseViewModel}}"
         mc:Ignorable="d"
         Title="CaisseView"         Width="1200" 
-        Height="1920">
+        Height="1200">
     <Window.DataContext>
         <viewmodels:CaisseViewModel>
             <viewmodels:CaisseViewModel.SelectedArticle>
@@ -21,6 +21,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <!-- Contenu principal -->
+            <RowDefinition Height="Auto"/>
+            <!-- Pied de page -->
             <RowDefinition Height="Auto"/>
             <!-- Pied de page -->
         </Grid.RowDefinitions>
@@ -74,7 +76,12 @@
             <!-- Bouton Clôturer le panier -->
             <Button Content="Clôturer le panier" Command="{Binding CloturerPanierCommand}" Background="Red" Foreground="White" Margin="10"/>
         </StackPanel>
+        <!-- Pied de page -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <!-- Bouton À propos -->
+            <Button Content="À propos" Style="{StaticResource AboutButtonStyle}" Click="AboutButton_Click" Margin="0,0,10,9" Grid.RowSpan="2"/>
+        </StackPanel>
     </Grid>
 
-    <!-- Bouton pour clôturer le panier -->
+
 </Window>
